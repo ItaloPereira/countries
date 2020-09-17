@@ -8,7 +8,7 @@ import Icon from '@components/atoms/Icon';
 import { Viewport } from './style';
 
 const NavBar = () => {
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   function toggleTheme() {
     dispatch({ type: TOGGLE_THEME });
@@ -25,7 +25,7 @@ const NavBar = () => {
           aria-hidden="true"
         >
           <div className="nav__wrapper__toggle-theme__icon-wrapper">
-            <Icon name="moon-outline" />
+            <Icon name={state.theme.name === 'light' ? 'moon-outline' : 'moon-solid'} />
           </div>
 
           <span className="nav__wrapper__toggle-theme__text">Dark Mode</span>

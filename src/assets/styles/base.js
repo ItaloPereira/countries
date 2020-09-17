@@ -1,13 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 import { Paragraph } from './typography';
-import { Primary } from './colors';
 
 const Base = createGlobalStyle`
   body {
     ${Paragraph}
-    color: ${Primary};
+    color: ${({ theme }) => theme.text};
     background: ${({ theme }) => theme.background};
-    transition: background 0.25s linear;
+
+    transition: ${({ themeChanged }) =>
+      themeChanged ? 'background 0.25s linear, color 0.25s linear' : '0s' };
   }
 `;
 

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import AppContext from '@context/appContext';
-import { lightTheme, darkTheme } from '@assets/styles/theme';
 
 const ThemeProvider = ({ children }) => {
   const { state } = useContext(AppContext);
-  const themeMode = state.theme === 'light' ? lightTheme : darkTheme;
 
   return (
-    <SCThemeProvider theme={themeMode}>
+    <SCThemeProvider theme={state.theme}>
       {children}
     </SCThemeProvider>
   )

@@ -2,8 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 
-import { Primary } from '@assets/styles/colors';
-
 const PageHead = ({ title, description }) => {
   return (
     <Helmet>
@@ -17,7 +15,7 @@ const PageHead = ({ title, description }) => {
       <meta name="description" content={description} />
       <link rel="icon" sizes="48x48" href="/static/img/favicon/favicon.ico" />
       <link rel="manifest" href="/static/manifest.json" />
-      <meta name="theme-color" content={Primary} />
+      <meta name="theme-color" />
     </Helmet>
   );
 };

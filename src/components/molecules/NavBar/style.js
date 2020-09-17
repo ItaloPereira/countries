@@ -29,6 +29,10 @@ export const Viewport = styled.div`
       &__text {
         ${LabelMedium}
         display: block;
+
+        :hover {
+          text-decoration: underline;
+        }
       }
     }
   }

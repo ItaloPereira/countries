@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import { Primary } from '@assets/styles/colors';
 
 export const Container = styled.div`
-  width: ${props => `calc(42px + 42px + ${props.pageCount * 36}px)`};
+  width: ${({ pageCount }) => `calc(42px + 42px + ${pageCount * 36}px)`};
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -22,21 +21,28 @@ export const Container = styled.div`
     outline: none;
 
     &:hover {
-      background: ${lighten(0.8, Primary)};
+      background: ${({ theme }) => lighten(0.8, theme.elements)};
     }
     
     &:active {
-      background: ${lighten(0.7, Primary)};
+      background: ${({ theme }) => lighten(0.7, theme.elements)};
     }
 
     &.chevron-left {
-      color: ${props => props.active === 1 ? lighten(0.5, Primary) : Primary};
-      pointer-events: ${props => props.active === 1 ? 'none' : 'auto'};
+      color: ${({ theme, active }) =>
+        active === 1 ? lighten(0.5, theme.elements) : theme.elements};
+
+      pointer-events: ${({ active }) =>
+        active === 1 ? 'none' : 'auto'};
     }
 
     &.chevron-right {
-      color: ${props => props.active === props.pageCount ? lighten(0.5, Primary) : Primary};
-      pointer-events: ${props => props.active === props.pageCount ? 'none' : 'auto'};
+      color: ${({ theme, active, pageCount }) => 
+        active === pageCount ? lighten(0.5, theme.elements) : theme.elements};
+
+      pointer-events: ${({ active, pageCount }) =>
+        active === pageCount ? 'none' : 'auto'};
+
       transform: rotate(180deg);
     }
   }
@@ -54,15 +60,15 @@ export const Container = styled.div`
     outline: none;
 
     &.active {
-      border: 1px solid ${Primary}
+      border: 1px solid ${({ theme }) => theme.elements}
     }
 
     &:hover {
-      background: ${lighten(0.8, Primary)};
+      background: ${({ theme }) => lighten(0.8, theme.elements)};
     }
 
     &:active {
-      background: ${lighten(0.7, Primary)};
+      background: ${({ theme }) => lighten(0.7, theme.elements)};
     }
   }
 `;
