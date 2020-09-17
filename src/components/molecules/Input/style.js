@@ -13,8 +13,8 @@ export const Container = styled.div`
     background: ${({ theme }) => theme.elements};
     transition: ${basicTransition};
     border: 1px solid ${({ theme }) => rgba(theme.text, 0.1)};
-    padding: 12px;
-    padding-left: ${({ type }) => type === 'search' ? '48px' : '12px'};
+    padding: 11px;
+    padding-left: ${({ type }) => type === 'search' ? '48px' : '11px'};
     outline: none;
     color: ${({ theme }) => theme.text};
 

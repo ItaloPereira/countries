@@ -12,6 +12,13 @@ export const ParagraphLargeHeight = `
   line-height: 24px;
 `;
 
+export const ParagraphLargeHeightStrong = `
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
 export const Heading = `
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
