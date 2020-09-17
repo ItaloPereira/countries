@@ -22,7 +22,7 @@ export const Viewport = styled.div`
     height: 100%;
 
     @media ${smscreen} {
-      padding: 0 16pt;
+      padding: 0 16px;
     }
 
     &__title {
