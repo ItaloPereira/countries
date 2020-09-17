@@ -5,11 +5,25 @@ export const Paragraph = `
   line-height: 16px;
 `;
 
+export const ParagraphLargeHeight = `
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
 export const Heading = `
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
   font-size: 24px;
   line-height: 32px;
+`;
+
+export const LabelMediumStrong = `
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 22px;
 `;
 
 export const LabelMedium = `

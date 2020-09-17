@@ -6,6 +6,7 @@ const Base = createGlobalStyle`
     ${Paragraph}
     color: ${({ theme }) => theme.text};
     background: ${({ theme }) => theme.background};
+    padding-top: 80px;
 
     transition: ${({ themeChanged }) =>
       themeChanged ? 'background 0.25s linear, color 0.25s linear' : '0s' };

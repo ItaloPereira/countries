@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import { basicTransition } from '@assets/styles/theme';
 
 export const Container = styled.div`
   width: ${({ pageCount }) => `calc(42px + 42px + ${pageCount * 36}px)`};
@@ -17,7 +18,7 @@ export const Container = styled.div`
     border-radius: 50%;
     margin: 0 5px;
     cursor: pointer;
-    transition: .3s;
+    transition: ${basicTransition};
     outline: none;
 
     &:hover {
@@ -56,7 +57,7 @@ export const Container = styled.div`
     margin: 0 2px;
     border-radius: 50%;
     cursor: pointer;
-    transition: .3s;
+    transition: ${basicTransition};
     outline: none;
 
     &.active {
