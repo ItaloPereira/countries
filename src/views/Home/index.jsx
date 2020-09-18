@@ -115,7 +115,7 @@ const Home = () => {
 
     const timeout = setTimeout(() => {
       if (searchText) searchCountries(searchText);
-      else getCountries();
+      else if (!region.value) getCountries();
     }, 500);
 
     if (searchText) {
@@ -134,7 +134,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (region.value) getCountriesByRegion();
+    if (region.value) {
+      setSearchText('');
+      getCountriesByRegion();
+    }
   }, [region]);
 
   return (

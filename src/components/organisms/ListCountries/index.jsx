@@ -27,6 +27,7 @@ const ListCountries = ({ countries, loading, itemsPerPage }) => {
 
   useEffect(() => {
     setCurrentPage(1);
+    setSlicedCountries(countries.slice(0, itemsPerPage * currentPage));
   }, [countries]);
 
   useEffect(() => {
