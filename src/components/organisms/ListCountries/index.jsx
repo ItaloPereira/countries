@@ -22,7 +22,11 @@ const ListCountries = ({ countries, loading, itemsPerPage }) => {
   }
 
   useEffect(() => {
-    if (countries.length) setSlicedCountries(countries.slice(0, itemsPerPage));
+    setSlicedCountries(countries.slice(0, itemsPerPage));
+  }, [loading]);
+
+  useEffect(() => {
+    setCurrentPage(1);
   }, [countries]);
 
   useEffect(() => {
@@ -59,6 +63,12 @@ const ListCountries = ({ countries, loading, itemsPerPage }) => {
               Load more
             </Button>
           </div>
+        </div>
+      )}
+
+      {!loading && !countries.length && (
+        <div className="list-countries__empty-container">
+          <span className="list-countries__empty-container__text">No Results</span>
         </div>
       )}
     </Container>

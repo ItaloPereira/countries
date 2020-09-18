@@ -8,11 +8,11 @@ const icomoonSvg = '/static/fonts/icon/icomoon.svg';
 const icons = createGlobalStyle`
   @font-face {
     font-family: 'icomoon';
-    src:  url(${icomoonEot}?ajytla);
-    src:  url(${icomoonEot}?ajytla#iefix) format('embedded-opentype'),
-      url(${icomoonTtf}?ajytla) format('truetype'),
-      url(${icomoonWoff}?ajytla) format('woff'),
-      url(${icomoonSvg}?ajytla#icomoon) format('svg');
+    src:  url(${icomoonEot}?mkvchp);
+    src:  url(${icomoonEot}?mkvchp#iefix) format('embedded-opentype'),
+      url(${icomoonTtf}?mkvchp) format('truetype'),
+      url(${icomoonWoff}?mkvchp) format('woff'),
+      url(${icomoonSvg}?mkvchp#icomoon) format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -30,6 +30,9 @@ const icons = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .icon-close:before {
+    content: "\\e906";
+  }
   .icon-arrow-left:before {
     content: "\\e900";
   }
@@ -48,7 +51,6 @@ const icons = createGlobalStyle`
   .icon-chevron-left:before {
     content: "\\e901";
   }
-  
 `
 
 export default icons;

@@ -18,9 +18,16 @@ const Input = ({ placeholder, type, value, onChange }) => {
       />
 
       {type === 'search' && (
-        <div className="input__icon-search-wrapper">
-          <Icon name="magnifier" />
-        </div>
+        <>
+          <div className="input__icon-search-wrapper">
+            <Icon name="magnifier" />
+          </div>
+          {value && (
+            <div className="input__icon-reset-wrapper" onClick={() => {onChange('')}} aria-hidden="true">
+              <Icon name="close" />
+            </div>
+          )}
+        </>
       )}
     </Container>
   );

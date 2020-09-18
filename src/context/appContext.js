@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { lightTheme, darkTheme } from '@assets/styles/theme';
 
-import { TOGGLE_THEME, SET_COUNTRIES } from './consts';
+import { TOGGLE_THEME, SET_COUNTRIES, REMOVE_COUNTRIES } from './consts';
 
 const { REACT_APP_PROJECT_NAME } = process.env;
 
@@ -31,6 +31,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         countries: payload,
+      };
+
+    case REMOVE_COUNTRIES:
+      return {
+        ...state,
+        countries: [],
       };
 
     default:

@@ -13,8 +13,7 @@ export const Container = styled.div`
     background: ${({ theme }) => theme.elements};
     transition: ${basicTransition};
     border: 1px solid ${({ theme }) => rgba(theme.text, 0.1)};
-    padding: 11px;
-    padding-left: ${({ type }) => type === 'search' ? '48px' : '11px'};
+    padding: ${({ type }) => type === 'search' ? '11px 48px' : '11px'};
     outline: none;
     color: ${({ theme }) => theme.text};
 
@@ -29,6 +28,14 @@ export const Container = styled.div`
     top: 50%;
     transform: translateY(-50%);
     left: 16px;
+  }
+
+  .input__icon-reset-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    cursor: pointer;
   }
 `;
 

@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import ContriesService from '@api/services/countries';
 import AppContext from '@context/appContext';
-import { SET_COUNTRIES } from '@context/consts';
+import { SET_COUNTRIES, REMOVE_COUNTRIES } from '@context/consts';
 
 import { getErrorMessageByRequest } from '@utils/errors';
 
@@ -17,10 +17,12 @@ import {
 } from './style';
 
 const Home = () => {
-  const [search, setSearch] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [region, setRegion] = useState({});
 
   const [loading, setLoading] = useState(false);
+
+  const [debounceToSearch, setDebounceToSearch] = useState(null);
 
   const {state, dispatch} = useContext(AppContext);
 
@@ -49,6 +51,26 @@ const Home = () => {
     },
   ];
 
+  async function searchCountries(query) {
+    setLoading(true);
+
+    try {
+      const res = await ContriesService.getCountriesByName(query);
+      dispatch({ type: SET_COUNTRIES, payload: res.data });
+
+    } catch(err) {
+      if (err.response.status !== 404) {
+        const errorMessage = getErrorMessageByRequest(err);
+        notifyError(errorMessage);
+      }
+    } finally {
+      // For better loading experience
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
+  }
+
   async function getCountries() {
     setLoading(true);
 
@@ -69,7 +91,26 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getCountries();
+    clearTimeout(debounceToSearch);
+
+    const timeout = setTimeout(() => {
+      if (searchText) searchCountries(searchText);
+      else getCountries();
+    }, 500);
+
+    if (searchText) {
+      setLoading(true);
+      dispatch({ type: REMOVE_COUNTRIES });
+    } else {
+      setLoading(false);
+    }
+
+    setDebounceToSearch(timeout);
+  }, [searchText]);
+
+
+  useEffect(() => {
+    setLoading(true);
   }, []);
 
   return (
@@ -80,8 +121,8 @@ const Home = () => {
             <Input
               type="search"
               placeholder="Search for a country..."
-              value={search}
-              onChange={(value) => setSearch(value)}
+              value={searchText}
+              onChange={(value) => setSearchText(value)}
             />
           </div>
 

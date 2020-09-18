@@ -1,4 +1,5 @@
 import { smscreen } from '@assets/styles/medias';
+import { ParagraphLargeHeightStrong } from '@assets/styles/typography';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -41,6 +42,21 @@ export const Container = styled.div`
       @media ${smscreen} {
         width: 100%;
       }
+    }
+  }
+
+  .list-countries__empty-container {
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+    @media ${smscreen} {
+      grid-column-end: 1;
+    }
+
+    &__text {
+      ${ParagraphLargeHeightStrong}
+      display: block;
+      text-align: center;
     }
   }
 `;
