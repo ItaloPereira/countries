@@ -5,8 +5,9 @@ import { Link, useParams } from 'react-router-dom';
 import ContriesService from '@api/services/countries';
 import { getErrorMessageByRequest } from '@utils/errors';
 
-import Page from '@components/templates/Page';
 import Icon from '@components/atoms/Icon';
+import Page from '@components/templates/Page';
+import CountryDetail from '@components/organisms/CountryDetail';
 
 import { 
   PageWrapper,
@@ -17,9 +18,6 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
   const [pageTitle, setPageTitle] = useState('Detail');
   const { code } = useParams();
-
-  console.log(loading);
-  console.log(country);
 
   const notifyError = (msg) => toast.error(msg);
 
@@ -34,7 +32,10 @@ const Detail = () => {
       const errorMessage = getErrorMessageByRequest(err);
       notifyError(errorMessage);
     } finally {
-      setLoading(false);
+      // For better loading experience
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     }
   }
 
@@ -56,7 +57,7 @@ const Detail = () => {
         </Link>
 
         <div className="detail__content">
-          content
+          <CountryDetail data={country} loading={loading} />
         </div>
       </PageWrapper>
     </Page>

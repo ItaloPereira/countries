@@ -1,17 +1,11 @@
 import React from 'react'; 
 import PropTypes from 'prop-types';
 
+import { formatPopulation } from '@utils/format';
+
 import { Container } from './style';
 
 const Card = ({ country, population, region, capital, flag, onClick }) => {
-  function formatPopulation(data) {
-    if (typeof data === 'number') {
-      return data.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-    }
-
-    return data;
-  }
-
   return (
     <Container onClick={onClick} aria-hidden="true">
       <img
@@ -24,7 +18,7 @@ const Card = ({ country, population, region, capital, flag, onClick }) => {
 
         <div className="card__content__row">
           <strong className="card__content__row__title">Population: </strong>
-          <span className="card__content__row__description" title={population}>{formatPopulation(population)}</span>
+          <span className="card__content__row__description" title={formatPopulation(population)}>{formatPopulation(population)}</span>
         </div>
 
         <div className="card__content__row">
