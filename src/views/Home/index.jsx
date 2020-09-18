@@ -34,8 +34,8 @@ const Home = () => {
       value: 'Africa',
     },
     {
-      label: 'America',
-      value: 'America',
+      label: 'Americas',
+      value: 'Americas',
     },
     {
       label: 'Asia',
@@ -50,6 +50,26 @@ const Home = () => {
       value: 'Oceania',
     },
   ];
+
+  async function getCountriesByRegion() {
+    setLoading(true);
+
+    try {
+      const res = await ContriesService.getCountriesByRegion(region.value);
+      dispatch({ type: SET_COUNTRIES, payload: res.data });
+
+    } catch(err) {
+      if (err.response.status !== 404) {
+        const errorMessage = getErrorMessageByRequest(err);
+        notifyError(errorMessage);
+      }
+    } finally {
+      // For better loading experience
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
+  }
 
   async function searchCountries(query) {
     setLoading(true);
@@ -100,6 +120,7 @@ const Home = () => {
 
     if (searchText) {
       setLoading(true);
+      setRegion({});
       dispatch({ type: REMOVE_COUNTRIES });
     } else {
       setLoading(false);
@@ -112,9 +133,9 @@ const Home = () => {
     setLoading(true);
   }, []);
 
-  // useEffect(() => {
-  //   setSearchText('');
-  // }, [region]);
+  useEffect(() => {
+    if (region.value) getCountriesByRegion();
+  }, [region]);
 
   return (
     <Page title="Home" description="Welcome">
