@@ -108,10 +108,13 @@ const Home = () => {
     setDebounceToSearch(timeout);
   }, [searchText]);
 
-
   useEffect(() => {
     setLoading(true);
   }, []);
+
+  // useEffect(() => {
+  //   setSearchText('');
+  // }, [region]);
 
   return (
     <Page title="Home" description="Welcome">

@@ -16,7 +16,9 @@ export const Container = styled.div`
     padding: ${({ type }) => type === 'search' ? '11px 48px' : '11px'};
     outline: none;
     color: ${({ theme }) => theme.text};
-
+    border-radius: 0;
+    -webkit-appearance: none;
+    
     &::placeholder {
       color: ${({ theme }) => rgba(theme.text, 0.5)};
       transition: ${basicTransition};
