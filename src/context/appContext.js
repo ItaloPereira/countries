@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 
 import { lightTheme, darkTheme } from '@assets/styles/theme';
 
-import { TOGGLE_THEME } from './consts';
+import { TOGGLE_THEME, SET_COUNTRIES } from './consts';
 
 const { REACT_APP_PROJECT_NAME } = process.env;
 
 const initialState = {
   theme: localStorage.getItem(`${REACT_APP_PROJECT_NAME}-theme`) === 'dark' ? darkTheme : lightTheme,
   themeChanged: false,
+
+  countries: [],
 };
 
 const reducer = (state = initialState, action) => {
-  const { type } = action;
+  const { type, payload } = action;
 
   switch (type) {
     case TOGGLE_THEME:
@@ -23,6 +25,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         themeChanged: true,
         theme: state.theme === lightTheme ? darkTheme : lightTheme,
+      };
+
+    case SET_COUNTRIES:
+      return {
+        ...state,
+        countries: payload,
       };
 
     default:

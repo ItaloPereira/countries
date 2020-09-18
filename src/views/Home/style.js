@@ -36,6 +36,9 @@ export const PageWrapper = styled.div`
     }
   }
 
+  .home__list {
+    margin-top: 40px;
+  }
 `;
 
 export default PageWrapper;

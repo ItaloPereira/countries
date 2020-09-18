@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { toast } from 'react-toastify';
 
-import Page from '@components/templates/Page';
+import ContriesService from '@api/services/countries';
+import AppContext from '@context/appContext';
+import { SET_COUNTRIES } from '@context/consts';
+
+import { getErrorMessageByRequest } from '@utils/errors';
+
 import Input from '@components/molecules/Input';
 import Select from '@components/molecules/Select';
+import ListCountries from '@components/organisms/ListCountries';
+import Page from '@components/templates/Page';
 
 import { 
   PageWrapper,
@@ -11,6 +19,12 @@ import {
 const Home = () => {
   const [search, setSearch] = useState('');
   const [region, setRegion] = useState({});
+
+  const [loading, setLoading] = useState(false);
+
+  const {state, dispatch} = useContext(AppContext);
+
+  const notifyError = (msg) => toast.error(msg);
 
   const regions = [
     {
@@ -35,6 +49,29 @@ const Home = () => {
     },
   ];
 
+  async function getCountries() {
+    setLoading(true);
+
+    try {
+      const res = await ContriesService.getAll();
+      dispatch({ type: SET_COUNTRIES, payload: res.data });
+
+    } catch(err) {
+      const errorMessage = getErrorMessageByRequest(err);
+      notifyError(errorMessage);
+
+    } finally {
+      // For better loading experience
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
+  }
+
+  useEffect(() => {
+    getCountries();
+  }, []);
+
   return (
     <Page title="Home" description="Welcome">
       <PageWrapper>
@@ -56,6 +93,10 @@ const Home = () => {
               onOptionSelected={(value) => setRegion(value)}
             />
           </div>
+        </div>
+
+        <div className="home__list">
+          <ListCountries countries={state.countries} loading={loading} />
         </div>
       </PageWrapper>
     </Page>

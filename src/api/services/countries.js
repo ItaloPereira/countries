@@ -1,7 +1,7 @@
 import API from '../index';
 
 class ContriesService extends API {
-  async getAllCountries() {
+  async getAll() {
     return this.get('/all');
   }
 }

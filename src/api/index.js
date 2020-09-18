@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const tokenName = `${process.env.REACT_APP_PROJECT_NAME}-token`;
-
 class API {
   constructor(base = process.env.REACT_APP_API_BASE_URL) {
     this.service = axios.create({

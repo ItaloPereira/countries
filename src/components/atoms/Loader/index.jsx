@@ -11,11 +11,11 @@ const Loader = ({ size, colorSchema }) => {
   const colors = {
     primary: {
       bg: 'rgba(0, 0, 0, 0.2)',
-      fg: state.theme.elements,
+      fg: state.theme.text,
     },
     secondary: {
       bg: 'rgba(255, 255, 255, 0.3)',
-      fg: state.theme.elements,
+      fg: state.theme.text,
     },
   };
   
