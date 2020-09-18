@@ -6,6 +6,7 @@ import { smscreen } from '@assets/styles/medias';
 export const Container = styled.div`
   margin-bottom: 63px;
   align-self: stretch;
+  cursor: ${({ onClick }) => onClick ? 'pointer' : 'default'};
 
   @media ${smscreen} {
     margin-bottom: 32px;

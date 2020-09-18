@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 import ContriesService from '@api/services/countries';
 import AppContext from '@context/appContext';
@@ -21,12 +22,12 @@ const Home = () => {
   const [region, setRegion] = useState({});
 
   const [loading, setLoading] = useState(false);
-
   const [debounceToSearch, setDebounceToSearch] = useState(null);
 
   const {state, dispatch} = useContext(AppContext);
 
   const notifyError = (msg) => toast.error(msg);
+  const history = useHistory();
 
   const regions = [
     {
@@ -50,6 +51,10 @@ const Home = () => {
       value: 'Oceania',
     },
   ];
+
+  function handleCardClick(code) {
+    history.push(`/detail/${code}`);
+  }
 
   async function getCountriesByRegion() {
     setLoading(true);
@@ -141,7 +146,7 @@ const Home = () => {
   }, [region]);
 
   return (
-    <Page title="Home" description="Welcome">
+    <Page title="Home" description="List of Coutries">
       <PageWrapper>
         <div className="home__filters">
           <div className="home__filters__search-wrapper">
@@ -164,7 +169,11 @@ const Home = () => {
         </div>
 
         <div className="home__list">
-          <ListCountries countries={state.countries} loading={loading} />
+          <ListCountries
+            countries={state.countries}
+            loading={loading}
+            onCardClick={handleCardClick}
+          />
         </div>
       </PageWrapper>
     </Page>

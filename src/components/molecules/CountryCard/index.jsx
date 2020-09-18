@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from './style';
 
-const Card = ({ country, population, region, capital, flag }) => {
+const Card = ({ country, population, region, capital, flag, onClick }) => {
   function formatPopulation(data) {
     if (typeof data === 'number') {
       return data.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
@@ -13,7 +13,7 @@ const Card = ({ country, population, region, capital, flag }) => {
   }
 
   return (
-    <Container>
+    <Container onClick={onClick} aria-hidden="true">
       <img
         src={flag}
         alt="flag"
@@ -47,12 +47,14 @@ Card.propTypes = {
   population: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   region: PropTypes.string,
   capital: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Card.defaultProps = {
   population: 'Data unavailable',
   region: 'Data unavailable',
   capital: 'Data unavailable',
+  onClick: undefined,
 };
 
 export default Card;

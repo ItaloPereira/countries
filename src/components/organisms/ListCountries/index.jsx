@@ -7,7 +7,7 @@ import CountryCard from '@components/molecules/CountryCard';
 
 import { Container } from './style';
 
-const ListCountries = ({ countries, loading, itemsPerPage }) => {
+const ListCountries = ({ countries, loading, itemsPerPage, onCardClick }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [slicedCountries, setSlicedCountries] = useState([]);
@@ -49,6 +49,7 @@ const ListCountries = ({ countries, loading, itemsPerPage }) => {
             region={country.region}
             capital={country.capital}
             flag={country.flag}
+            onClick={() => onCardClick(country.alpha2Code)}
           />
         ))
       )}
@@ -82,12 +83,14 @@ ListCountries.propTypes = {
   ),
   loading: PropTypes.bool,
   itemsPerPage: PropTypes.number,
+  onCardClick: PropTypes.func,
 };
 
 ListCountries.defaultProps = {
   countries: [],
   loading: false,
   itemsPerPage: 8,
+  onCardClick: undefined,
 };
 
 export default ListCountries;
