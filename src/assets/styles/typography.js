@@ -40,6 +40,27 @@ export const LabelMediumStrong = `
   line-height: 22px;
 `;
 
+export const LabelMediumHeight = `
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+export const LabelMediumHeightStrong = `
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+export const HeadingLarge = `
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 43px;
+`;
+
 export const LabelMedium = `
   font-family: 'Nunito', sans-serif;
   font-weight: 600;

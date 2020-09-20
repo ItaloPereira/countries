@@ -9,8 +9,8 @@ import Detail from '@views/Detail';
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" component={Home} exact />
-      <Route path="/detail/:code" component={Detail} exact />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/detail/:code" component={Detail} />
     </Switch>
 
     <ToastContainer

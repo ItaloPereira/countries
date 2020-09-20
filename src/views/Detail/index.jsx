@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import ContriesService from '@api/services/countries';
 import { getErrorMessageByRequest } from '@utils/errors';
@@ -20,6 +20,7 @@ const Detail = () => {
   const { code } = useParams();
 
   const notifyError = (msg) => toast.error(msg);
+  const history = useHistory();
 
   async function getCountry() {
     setLoading(true);
@@ -28,6 +29,17 @@ const Detail = () => {
       const res = await ContriesService.getCountryByCode(code);
       setCountry(res.data);
       setPageTitle(res.data.name);
+
+      if (res.data.borders.length) {
+        const borders = await ContriesService.getCountriesByCode(res.data.borders);
+  
+        const countryWithBorders = {
+          ...res.data,
+          borders: borders.data,
+        };
+        
+        setCountry(countryWithBorders);
+      }
     } catch(err) {
       const errorMessage = getErrorMessageByRequest(err);
       notifyError(errorMessage);
@@ -37,6 +49,11 @@ const Detail = () => {
         setLoading(false);
       }, 500);
     }
+  }
+
+  function handleBorderClick(border) {
+    history.replace(`/detail/${border}`);
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -57,7 +74,7 @@ const Detail = () => {
         </Link>
 
         <div className="detail__content">
-          <CountryDetail data={country} loading={loading} />
+          <CountryDetail data={country} loading={loading} handleBorderClick={handleBorderClick} />
         </div>
       </PageWrapper>
     </Page>

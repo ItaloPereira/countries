@@ -16,6 +16,10 @@ class ContriesService extends API {
   async getCountryByCode(code) {
     return this.get(`/alpha/${code}`);
   }
+
+  async getCountriesByCode(codes) {
+    return this.get(`/alpha?codes=${codes.join(';')}`);
+  }
 }
 
 export default new ContriesService();

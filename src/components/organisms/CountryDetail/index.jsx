@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { formatPopulation } from '@utils/format';
 
 import Loader from '@components/atoms/Loader';
+import Tag from '@components/atoms/Tag';
 
 import { Container } from './style';
 
-const CountryDetail = ({ data, loading }) => {
+const CountryDetail = ({ data, loading, handleBorderClick }) => {
   return (
     <Container>
       {loading ? (
@@ -72,7 +73,21 @@ const CountryDetail = ({ data, loading }) => {
                 </div>
 
               </div>
+            </div>
 
+            <div className="country-detail__content__info__footer">
+              <span className="country-detail__content__info__footer__title">Border Countries:</span>
+              <div className="country-detail__content__info__footer__tags">
+                {data.borders.length ? (
+                  data.borders.map(border => (
+                    <div key={border.alpha2Code} className="country-detail__content__info__footer__tags__wrapper">
+                      <Tag onClick={() => handleBorderClick(border.alpha2Code)}>{border.name}</Tag>
+                    </div>
+                  ))
+                ) : (
+                  <span className="country-detail__content__info__footer__tags__empty">This country has no borders.</span>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -82,25 +97,9 @@ const CountryDetail = ({ data, loading }) => {
 };
 
 CountryDetail.propTypes = {
-  data: PropTypes.objectOf({
-    flag: PropTypes.string,
-    name: PropTypes.string,
-    nativeName: PropTypes.string,
-    population: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    region: PropTypes.string,
-    subregion: PropTypes.string,
-    capital: PropTypes.string,
-    topLevelDomain: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    currencies: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.objectOf({
-      name: PropTypes.string,
-    }))]),
-    languages: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.objectOf({
-      name: PropTypes.string,
-    }))]),
-    borders: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  }),
-
+  data: PropTypes.objectOf(PropTypes.any),
   loading: PropTypes.bool,
+  handleBorderClick: PropTypes.func,
 };
 
 CountryDetail.defaultProps = {
@@ -117,6 +116,7 @@ CountryDetail.defaultProps = {
     borders: 'Data unavailable',
   },
   loading: false,
+  handleBorderClick: undefined,
 };
 
 export default CountryDetail;

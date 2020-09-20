@@ -15,6 +15,7 @@ export const Container = styled.div`
   .card__flag {
     width: 100%;
     object-fit: cover;
+    object-position: center;
     height: 153px;
 
     @media ${smscreen} {
@@ -40,7 +41,6 @@ export const Container = styled.div`
     &__row {
       margin-bottom: 8px;
       color: ${({ theme }) => rgba(theme.text, 0.9)};
-
 
       &__title {
         ${LabelSmallStrong}

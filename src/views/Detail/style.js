@@ -33,6 +33,10 @@ export const PageWrapper = styled.div`
 
   .detail__content {
     margin-top: 40px;
+
+    @media ${smscreen} {
+      margin-top: 32px;
+    }
   }
 `;
 
