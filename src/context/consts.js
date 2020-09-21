@@ -1,0 +1,3 @@
+export const TOGGLE_THEME = 'TOGGLE_THEME';
+export const SET_COUNTRIES = 'SET_COUNTRIES';
+export const REMOVE_COUNTRIES = 'REMOVE_COUNTRIES';
