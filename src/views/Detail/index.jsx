@@ -53,12 +53,11 @@ const Detail = () => {
 
   function handleBorderClick(border) {
     history.replace(`/detail/${border}`);
-    window.location.reload();
   }
 
   useEffect(() => {
     getCountry();
-  }, []);
+  }, [code]);
 
   return (
     <Page title={pageTitle} description="Detail Page">
